@@ -5,13 +5,13 @@ import org.junit.Test;
 
 import game.Controller;
 
-public class Testing {
-
+public class Tests {
+	
 	@Test
-	public void randomTest() {
+	public void setRandomNumberTest() {
 		Controller controller = new Controller();
 		int number = controller.setRandomNumber();
-		if ( (number < 0) && (number > 100) ) {
+		if ( (number < 0) || (number > 100)) {
 			Assert.fail();
 		}
 	}

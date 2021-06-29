@@ -1,7 +1,6 @@
 package game;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Random;
 
@@ -19,6 +18,7 @@ public class Controller {
 		view.printMessage(View.START);
 		model.setRandomNumber(setRandomNumber());
 		
+		point :
 		while ( ! model.isGuessed()) {
 			
 			view.printMessage(View.INPUT_REQUEST + model.getMinPossibleInput()
@@ -27,20 +27,27 @@ public class Controller {
 			
 			if (inputNumber == model.getRandomNumber()) {
 				model.setGuessed(true);
+				putInAttempts(inputNumber);
 				view.printMessage(View.CONGRATS);
+				for ( model.setIterator(model.getIterator() - 1); model.getIterator() >= 0; 
+						model.setIterator(model.getIterator() - 1)) {
+					System.out.println(model.getAttempts()[model.getIterator()]);
+				}
 			}
 			
 			if (isValid(inputNumber)) {
 				if (inputNumber < model.getRandomNumber()) {
 					view.printMessage(View.INPUTTED_VALUE_IS_LOWER);
 					model.setMinPossibleInput(inputNumber); // check
-					continue;
+					putInAttempts(inputNumber, true);
+					continue point;
 				}
 				
 				if (inputNumber > model.getRandomNumber()) {
 					view.printMessage(View.INPUTTED_VALUE_IS_LARGER);
 					model.setMaxPossibleInput(inputNumber);
-					continue;
+					putInAttempts(inputNumber, false);
+					continue point;
 				}
 			}
 		}
@@ -76,15 +83,27 @@ public class Controller {
 		int input = 0;
 		try {
 			input = Integer.parseInt(reader.readLine());
-		} catch (IOException e) {
+		} catch (Exception e) {
 			view.printMessage(View.INVALID_INPUT);
 		}
-		try {
-			reader.close();
-		} catch (IOException e) {
-			
-		}
 		return input;
+	}
+	
+	public String putInAttempts(int inputNumber) {
+		model.getAttempts()[model.getIterator()] = ("You inserted: " + inputNumber + " which was the answer.");
+		model.setIterator(model.getIterator() + 1);
+		return model.getAttempts()[model.getIterator()];
+	}
+	
+	public String putInAttempts(int inputNumber, boolean isLower) {
+		if (isLower) {
+			model.getAttempts()[model.getIterator()] = ("You inserted: " + inputNumber + " which was lower.");
+		}
+		if ( ! isLower) {
+			model.getAttempts()[model.getIterator()] = ("You inserted: " + inputNumber + " which was larger.");
+		}
+		model.setIterator(model.getIterator() + 1);
+		return model.getAttempts()[model.getIterator()];
 	}
 	
 }

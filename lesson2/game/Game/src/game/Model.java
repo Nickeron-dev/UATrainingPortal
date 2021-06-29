@@ -6,6 +6,24 @@ public class Model {
 	private boolean isGuessed = false;
 	private int minPossibleInput = 0;
 	private int maxPossibleInput = 99;
+	private String[] attempts = new String[100];
+	private int iterator = 0;
+	
+	public String[] getAttempts() {
+		return attempts;
+	}
+
+	public void setAttempts(String[] attempts) {
+		this.attempts = attempts;
+	}
+
+	public int getIterator() {
+		return iterator;
+	}
+
+	public void setIterator(int iterator) {
+		this.iterator = iterator;
+	}
 
 	public int getRandomNumber() {
 		return randomNumber;
@@ -38,7 +56,5 @@ public class Model {
 	public void setMaxPossibleInput(int maxPossibleInput) {
 		this.maxPossibleInput = maxPossibleInput;
 	}
-	
-	
 	
 }

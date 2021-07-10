@@ -174,3 +174,117 @@ public static int area(int width, int height) {
     }
     return width * height;
 }
+
+// RULE: You cannot catch superclass before subclass!!!
+public class App {
+    public static void main(String[] args) {
+        try {
+        } catch (Exception e) {
+        } catch (RuntimeException e) {  // impossible
+        }
+    }
+}
+
+// Possible
+public class App {
+    public static void main(String[] args) {
+        try {
+        } catch (Error e) {
+        } catch (RuntimeException e) {
+        }
+    }
+}
+
+// finally will be completed
+public class App {
+    public static void main(String[] args) {
+        try {
+            throw new RuntimeException();
+        } finally {
+            System.err.println("finally");
+        }
+    }
+}
+
+// only in this case finally won't be completed
+public class App {
+    public static void main(String[] args) {
+        try {
+            System.exit(42);
+        } finally {
+            System.err.println("finally");
+        }
+    }
+}
+
+// unreachable statement
+public class App {
+    public static void main(String[] args) {
+        try {
+            System.err.println("try");
+            throw new RuntimeException();
+        } finally {
+            System.err.println("finally");
+        }
+        System.err.println("more");
+    }
+}
+
+// will return 1
+public class App {
+    public static void main(String[] args) {
+        System.err.println(f());
+    }
+    public static int f() {
+        try {
+            return 0;
+        } finally {
+            return 1;
+        }
+    }
+}
+
+// finally will be main
+public class App {
+    public static void main(String[] args) {
+        System.err.println(f());
+    }
+    public static int f() {
+        try {
+            return 0;
+        } finally {
+            throw new RuntimeException();
+        }
+    }
+}
+
+// as if and for, try/catch/finally allows infinite nesting
+public class App {
+    public static void main(String[] args) {
+        try {
+            try {
+                ...
+            } catch (Exception e) {
+                ...
+            } finally {
+                ...
+            }
+        } catch (Exception e) {
+            try {
+                ...
+            } catch (Exception e) {
+                ...
+            } finally {
+                ...
+            }
+        } finally {
+            try {
+                ...
+            } catch (Exception e) {
+                ...
+            } finally {
+                ...
+            }
+        }
+    }
+} // and so on...

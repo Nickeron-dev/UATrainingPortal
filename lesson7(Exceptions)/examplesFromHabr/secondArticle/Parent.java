@@ -1,3 +1,5 @@
+package classes;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -6,7 +8,7 @@ public class Parent {
     public void f() throws IOException, InterruptedException {}
 }
 
-// Override must be with smaller amount of throwing
+// Overridden method can't have larger throws
 class Child extends Parent {
     // а потомок пугает только потомком IOException
     @Override

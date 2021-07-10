@@ -97,22 +97,6 @@ public class App {
     }
 }
 
-// if you caught partly, you don't need to throw entirely. throw everything you haven't caught
-public class App {
-    // EOFException перехватили catch-ом, им не пугаем
-    public static void main(String[] args) throws FileNotFoundException {
-        try {
-            if (System.currentTimeMillis() % 2 == 0) {
-                throw new EOFException();
-            } else {
-                throw new FileNotFoundException(); // wasn't caught so put in throws
-            }
-        } catch (EOFException e) {
-            // ...
-        }
-    }
-}
-
 // impossible
 public class App {
     // пугаем Exception
@@ -130,19 +114,6 @@ public class App {
             Throwable t = new Exception(); // и лететь будет Exception
             throw t; // но тут ошибка компиляции
         } catch (Exception e) {
-            System.out.println("Перехвачено!");
-        }
-    }
-}
-
-// possible because Throwable is thrown
-public class App {
-    // ТЕПЕРЬ пугаем Throwable
-    public static void main(String[] args) throws Throwable {
-        try {
-            Throwable t = new Exception(); // а лететь будет Exception
-            throw t;
-        } catch (Exception e) { // и мы перехватим Exception
             System.out.println("Перехвачено!");
         }
     }

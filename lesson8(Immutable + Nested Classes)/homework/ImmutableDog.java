@@ -1,5 +1,9 @@
 package classes;
 
+/**
+ * Immutable dog object
+ * @author Illia Koshkin
+*/
 public final class ImmutableDog {
 
         private final String name;

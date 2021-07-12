@@ -1,7 +1,15 @@
 package classes;
 
+/**
+ * Immutable dog object
+ * @author Illia Koshkin
+*/
 public class ImmutableDogMain {
 
+        /**
+         * This method is for testing my ImmutableDog class
+         * @param args is for possible input
+        */
         public static void main(String... args) {
                 String name = "Sharik";
                 int age = 5;

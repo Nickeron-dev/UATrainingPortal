@@ -13,10 +13,11 @@ public class Switcher implements IElectricityConsumer {
     public void electricityOn() {
         System.out.println("Switcher is ON!");
         if (consumers != null) {
-            for (int i = 0; i < consumers.size(); i++) {
-                consumers.get(i).electricityOn();
-            }
-
+            consumers.stream().forEach((consumer) -> {
+                consumer.electricityOn();
+                System.out.println("Name of the class: " + consumer.getClass().getName()); // some reflection
+            });
+            // that was better than for loop
         }
     }
 

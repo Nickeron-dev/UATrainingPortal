@@ -30,7 +30,7 @@ public class Main {
                     }
                 }
         );
-        switcher.setConsumer(() -> System.out.println("Hello")); // this is lambda
+        switcher.setConsumer(() -> System.out.println("Lambda is here!")); // this is lambda
         /*
         () in lambda can be skipped if there is only 1 parameter(we have 0 so we can't skip 'em)
          */

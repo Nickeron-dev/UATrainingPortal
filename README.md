@@ -1,2 +1,2 @@
 # UATrainingPortal
-Solutions to tasks from this course.
+Solutions to tasks and examples from this course.

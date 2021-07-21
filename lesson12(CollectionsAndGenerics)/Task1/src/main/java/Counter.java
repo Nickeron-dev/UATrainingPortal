@@ -20,7 +20,7 @@ public class Counter {
 
         HashSet<Integer> set = new HashSet<>(array);
         ArrayList<Integer> arrayNoDuplicates = new ArrayList<>(set);
-        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>(array, arrayNoDuplicates);
+        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>(array.size(), arrayNoDuplicates.size());
         System.out.println(map);
        // count(array);
     }

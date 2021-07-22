@@ -72,7 +72,7 @@ public class LinkedContainer<E> implements Linked<E>, Iterable<E> {
         };
     }
 
-    
+
 
     private class Node<E> {
         private E currentElement;

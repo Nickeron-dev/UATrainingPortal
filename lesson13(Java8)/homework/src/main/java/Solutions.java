@@ -28,9 +28,4 @@ public class Solutions {
         System.out.print("}");
     }
 
-    public static int increment(Integer target) {
-        target++;
-        return target;
-    }
-
 }

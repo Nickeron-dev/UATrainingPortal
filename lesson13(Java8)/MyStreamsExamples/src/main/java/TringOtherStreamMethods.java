@@ -27,5 +27,7 @@ public class TringOtherStreamMethods {
         int x = 5;
         System.out.println(x > 2 ? x < 4 ? 10 : 8 : 7);
         System.out.println(x > 2 ? 7 : x < 4 ? 10 : 8);
+
+        Stream.iterate(40, n -> n + 2).limit(20).forEach(System.out::print);
     }
 }

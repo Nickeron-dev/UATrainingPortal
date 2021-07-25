@@ -29,5 +29,12 @@ public class TringOtherStreamMethods {
         System.out.println(x > 2 ? 7 : x < 4 ? 10 : 8);
 
         Stream.iterate(40, n -> n + 2).limit(20).forEach(System.out::print);
+        System.out.println();
+        Stream.of(1, 2, 4, 5, 2, 5).skip(2).forEach(System.out::print);
+        System.out.println();
+        Stream.of(1, 2, 4, 5, 2, 5).distinct().forEach(System.out::print);
+        System.out.println();
+
+        Stream.of(1, 2, 4, 7, 2, 8).peek(m -> System.out.format("before distinct: %d%n", m)).distinct().peek(m -> System.out.printf("after distinct: %d%n", m)).map(element -> element * element).forEach(System.out::print);
     }
 }

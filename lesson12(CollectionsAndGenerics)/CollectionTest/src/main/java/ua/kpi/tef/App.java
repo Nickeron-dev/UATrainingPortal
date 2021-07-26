@@ -1,7 +1,7 @@
 package ua.kpi.tef;
 
 /**
- * Hello world!
+ * @author Illia Koshkin
  *
  */
 public class App 

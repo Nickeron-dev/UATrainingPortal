@@ -3,8 +3,8 @@ package ua.kpi.tef.model;
 import java.time.LocalDateTime;
 
 /**
- * GKislin
- * 11.01.2015.
+ * @author Illia Koshkin
+ *
  */
 public class UserMealWithExceed {
     private final LocalDateTime dateTime;

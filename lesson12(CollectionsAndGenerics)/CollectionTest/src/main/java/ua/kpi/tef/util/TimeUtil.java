@@ -3,8 +3,8 @@ package ua.kpi.tef.util;
 import java.time.LocalTime;
 
 /**
- * GKislin
- * 07.01.2015.
+ * @author Illia Koshkin
+ *
  */
 public class TimeUtil {
     public static boolean isBetween(LocalTime lt, LocalTime startTime, LocalTime endTime) {

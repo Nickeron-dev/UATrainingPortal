@@ -3,11 +3,11 @@ package ua.kpi.tef.util;
 import ua.kpi.tef.model.UserMeal;
 import ua.kpi.tef.model.UserMealWithExceed;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.Month;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -30,10 +30,19 @@ public class UserMealsUtil {
     }
 
     public static List<UserMealWithExceed>  getFilteredWithExceeded(List<UserMeal> mealList, LocalTime startTime, LocalTime endTime, int caloriesPerDay) {
-
+        Map<LocalDate, Integer> days = mealList.stream().map(element -> element.getDateTime().toLocalDate()).distinct().collect(Collectors.toMap(x -> x, x -> 0));
+        //Map<LocalDateTime, Integer> caloriesInOneDay = new HashMap<>(days.size());
+        //HashMap<LocalDate, Integer> days = new HashMap<>(days1);
+        System.out.println(days);
+        for (int i = 0; i < mealList.size(); i++) {
+                //if (days.contains(mealList.get(i).getDateTime())) {
+                    int got = days.get(mealList.get(i).getDateTime().toLocalDate());
+                    days.put(mealList.get(i).getDateTime().toLocalDate(), got + mealList.get(i).getCalories());
+        }
+        System.out.println("completed");
         List<UserMealWithExceed> answer = mealList.stream()
                 .filter((element) -> TimeUtil.isBetween(element.getDateTime().toLocalTime(), startTime, endTime))
-                .map(element -> new UserMealWithExceed(element.getDateTime(), element.getDescription(), element.getCalories(), element.getCalories() < caloriesPerDay))
+                .map(element -> new UserMealWithExceed(element.getDateTime(), element.getDescription(), element.getCalories(), (days.get(element.getDateTime().toLocalDate())) <= caloriesPerDay))
                 .collect(Collectors.toList());
 
         return answer;

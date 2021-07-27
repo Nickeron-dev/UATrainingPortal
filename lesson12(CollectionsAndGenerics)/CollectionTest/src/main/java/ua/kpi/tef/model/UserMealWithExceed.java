@@ -22,6 +22,22 @@ public class UserMealWithExceed {
         this.exceed = exceed;
     }
 
+    public LocalDateTime getDateTime() {
+        return dateTime;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public int getCalories() {
+        return calories;
+    }
+
+    public boolean isExceed() {
+        return exceed;
+    }
+
     @Override
     public String toString() {
         return "UserMealWithExceed{" +
@@ -30,5 +46,19 @@ public class UserMealWithExceed {
                 ", calories=" + calories +
                 ", exceed=" + exceed +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        } else {
+            UserMealWithExceed temp = (UserMealWithExceed) obj;
+            return this.dateTime.equals(temp.getDateTime()) && this.description.equals(temp.getDescription())
+                    && this.calories == temp.getCalories() && this.exceed == temp.isExceed();
+        }
     }
 }

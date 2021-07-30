@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+</head>
+<body ng-app="users_form" ng-controller="UserCtrl">
+    <p1 data-ng-init="getUsers()">Hello world</p1>
+
+    <table ng-model="users">
+        <tr>
+            <th>Id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Role</th>
+        </tr>
+        <tr ng-repeat="u in users">
+            <td>{{u.id}}</td>
+            <td>{{u.firstName}}</td>
+            <td>{{u.lastName}}</td>
+            <td>{{u.email}}</td>
+            <td>{{u.role}}</td>
+        </tr>
+    </table>
+    <script type="text/javascript" src="../js/users.js"></script>
+</body>
+</html>

@@ -8,8 +8,6 @@ import ua.testing.demo_jpa.dto.UsersDTO;
 import ua.testing.demo_jpa.entity.User;
 import ua.testing.demo_jpa.repository.UserRepository;
 
-import java.util.Optional;
-
 @Slf4j
 @Service
 public class UserService {
@@ -20,20 +18,22 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public UsersDTO getAllUsers() {
-        //TODO checking for an empty user list
-//        userRepository.
+    public UsersDTO getAllUsers() throws Exception {
+        if (userRepository.findAll().isEmpty()) {
+            throw new Exception("Repository is empty");
+        }
         return new UsersDTO(userRepository.findAll());
     }
 
-    public Optional<User> findByUserLogin (UserDTO userDTO){
-        //TODO check for user availability. password check
-        return userRepository.findByEmail(userDTO.getEmail());
+    public User findByUserLogin (UserDTO userDTO) throws Exception {
+        return userRepository.findByEmail(userDTO.getEmail()).orElseThrow(Exception::new);
     }
 
-    public void saveNewUser (User user){
-        //TODO inform the user about the replay email
-        // TODO exception to endpoint
+    public void saveNewUser (User user) throws Exception {
+        if (userRepository.findAll().stream().anyMatch(element -> element.getEmail() == user.getEmail())) {
+            throw new Exception("This email is already used");
+        }
+
         try {
             userRepository.save(user);
         } catch (Exception ex){

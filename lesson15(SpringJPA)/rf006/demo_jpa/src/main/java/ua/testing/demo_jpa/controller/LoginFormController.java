@@ -25,21 +25,20 @@ public class LoginFormController {
     @ResponseStatus(HttpStatus.CREATED)
     //@RequestMapping(value = "login", method = RequestMethod.POST)
     @PostMapping(value = "login")
-    public void loginFormController(UserDTO user){
+    public void loginFormController(UserDTO user) throws Exception {
         log.info("{}",userService.findByUserLogin(user));
         log.info("{}", user);
 
-
-/*       userService.saveNewUser(User.builder()
+       userService.saveNewUser(User.builder()
                 .firstName("Ann")
                 .lastName("Reizer")
                 .email("AnnReizer@testing.ua")
                 .role(RoleType.ROLE_USER)
-                .build());*/
+                .build());
     }
 
     @RequestMapping(value = "user", method = RequestMethod.GET)
-    public UsersDTO getAllUser(){
+    public UsersDTO getAllUser() throws Exception {
         log.info("{}",userService.getAllUsers());
         return userService.getAllUsers();
     }

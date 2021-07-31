@@ -5,23 +5,24 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class View {
-    public static ResourceBundle bundle =
-            ResourceBundle.getBundle("messages",
-                    //new Locale("ua", "UA"));
-                    new Locale("en"));
 
-    public static boolean changeLocale(Optional<String> language) {
-        try {
-            language.ifPresent(element -> {
-                View.changeBundle(new Locale(language.get(), language.get().toUpperCase()));
-            });
-        } catch (Exception exc) {
+    public static final String BUNDLE_NAME = "messages";
+
+    private ResourceBundle bundle =
+            ResourceBundle.getBundle(BUNDLE_NAME, new Locale("en"));
+
+    public String getBundleText(String path) {
+        return bundle.getString(path);
+    }
+
+    public boolean changeLocale(Optional<Locale> locale) {
+        if (locale.isPresent()) {
+            bundle = ResourceBundle.getBundle(BUNDLE_NAME, locale.get());
+            return true;
+        } else {
             return false;
         }
-        return true;
     }
 
-    private static void changeBundle(Locale locale) {
-        bundle = ResourceBundle.getBundle("messages", locale);
-    }
+
 }

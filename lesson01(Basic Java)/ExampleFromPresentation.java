@@ -13,7 +13,7 @@ public class ExampleFromPresentation {
                 System.out.println("" + c11 + c22 + c33); // concat
 
                 int v1 = 1;
-                long v2 = 2;
+                long v2 = 2L;
                 //v1 = v1 + v2;
                 System.out.println(v1);
 
@@ -34,7 +34,7 @@ public class ExampleFromPresentation {
                 //byte c = (byte) b + 1; // error anyway
                 //System.out.println(c);
 
-
+                System.out.println(Integer.toBinaryString(17));
                 System.out.println(Integer.toBinaryString(-17));
         }
 }
